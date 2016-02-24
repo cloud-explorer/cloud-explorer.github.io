@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>What is a cdn and why do you need it | Cloud Explorer.</title>
+  <meta name="author" content="Raju Rangan">
+  
+  <meta name="description" content="This is a test text">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="What is a cdn and why do you need it"/>
+  <meta property="og:site_name" content="Cloud Explorer."/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/cosmo.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51500048-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar  navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Cloud Explorer.</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header ">		
+			<h1 class="title "> What is a cdn and why do you need it</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a CDN can drastically improve the situation.</p>
+<h4 id="Scenario-1-No-CDN"><a href="#Scenario-1-No-CDN" class="headerlink" title="Scenario 1: No CDN"></a>Scenario 1: No CDN</h4><p><img src="image1.jpg" width="624" height="255"></p>
+<ol>
+<li><p>The user requests a resource on your website through the internet</p>
+</li>
+<li><p>Depending on network conditions and the user’s location, the request may take up to 6 or 7 hops to get to the origin server (Red lines in the diagram)</p>
+</li>
+<li><p>The origin server processes the request and its response will again travel through the internet taking several hops before reaching the user’s HTTP client (Black lines in the diagram). Even for the most optimized website, this “network hop” dance negatively impacts latency by several seconds.</p>
+</li>
+</ol>
+<p>According to <a href="http://loadstorm.com/2014/04/infographic-web-performance-impacts-conversion-rates/" target="_blank" rel="external">this</a> 2014 study by LoadStorm, <strong>25%</strong> of users will abandon a website that takes more than 4 seconds to load, <strong>75%</strong> of mobile users will quit after 5 seconds. The worst part is almost <strong>50%</strong> of the users will never return to a poorly performing website. This is the exact problem a Content Delivery Network (CDN) tries to solve by caching static resources in geographically distributed edge servers.</p>
+<p>—–Call Out—–</p>
+<p><strong>Origin Server:</strong> As the name suggests, this is the server(s) where the customer host their content.</p>
+<p><strong>POP</strong>: POP stands for Point Of Presence. This is also sometime referred to as the <strong>CDN Edge Network</strong>. These are the geographical locations where CDN edge server are located</p>
+<hr>
+<h4 id="Scenario-2-With-CDN-First-Request-Origin-Pull"><a href="#Scenario-2-With-CDN-First-Request-Origin-Pull" class="headerlink" title="Scenario 2: With CDN - First Request (Origin Pull)"></a>Scenario 2: With CDN - First Request (Origin Pull)</h4><p><img src="image2.jpg" width="624" height="255"></p>
+<ol>
+<li><p>The user requests a resource on your website through the internet</p>
+</li>
+<li><p>The request reaches the “closest” POP location to the user (POP-U in diagram). Close here refers to network closeness and not necessarily geographical closeness.</p>
+</li>
+<li><p>Since the edge network is aware of its locations, POP-U requests the resource directly from the POP closest to the origin server (POP-O in diagram).</p>
+</li>
+<li><p>POP-O request the resource from the origin, caches the response and communicates it back directly to POP-U.</p>
+</li>
+<li><p>POP-U caches the response and communicates it back to the user</p>
+</li>
+</ol>
+<h4 id="Scenario-3-With-CDN-Subsequent-Request"><a href="#Scenario-3-With-CDN-Subsequent-Request" class="headerlink" title="Scenario 3: With CDN - Subsequent Request"></a>Scenario 3: With CDN - Subsequent Request</h4><p><img src="image3.jpg" width="624" height="255"></p>
+<ol>
+<li><p>The user requests a resource on your website through the internet</p>
+</li>
+<li><p>The request reaches the “closest” POP location to the user. If a cached version of the resource is available, it is communicated back to the user. If a cached version was not found, the resource will be pulled from the origin (scenario 2).</p>
+</li>
+</ol>
+<p>With the CDN Edge Network, the number of “hops” required to pull a resource from the origin server is reduced significantly. Once the resource is cached, it is directly served from a POP that is “closest” to the requester. This dramatically improves the latency of the website.</p>
+<h4 id="Scenario-4-With-CDN-–-Request-from-a-different-POP-location"><a href="#Scenario-4-With-CDN-–-Request-from-a-different-POP-location" class="headerlink" title="Scenario 4: With CDN – Request from a different POP location"></a>Scenario 4: With CDN – Request from a different POP location</h4><p><img src="image4.jpg" width="624" height="255"></p>
+<ol>
+<li><p>The user requests a resource on your website through the internet</p>
+</li>
+<li><p>Just like in scenario 2 the POP closest to the user (POP-U) receives the request and forward it directly to the POP (POP-O) closest to the origin.</p>
+</li>
+<li><p>If POP-O has a cached version of the resource, it responds back <strong>without</strong> requesting it from the origin. If not, it performs an origin pull.</p>
+</li>
+</ol>
+<p>As can be seen the introduction of a CDN allows the website to respond to unpredictable user loads in a predictable manner. Content is always pulled and cached by the POP closest to the origin. As and when user load increases, the load on the CDN edge network increases never affecting the origin server.</p>
+<h4 id="Is-a-CDN-must-for-every-website"><a href="#Is-a-CDN-must-for-every-website" class="headerlink" title="Is a CDN must for every website?"></a>Is a CDN must for every website?</h4><p>It depends on the purpose and user distribution of the website. A CDN may not make much difference in the following scenarios</p>
+<ol>
+<li><p>If the content of the website is very dynamic with very little chance of reuse.</p>
+</li>
+<li><p>If the majority of the users are in a location very close to the origin server. In this case the origin may be better suited to deliver the content in the most optimal route.</p>
+</li>
+</ol>
+<p>There are several CDN offerings available such as Akamai, Amazon CloudFront, Azure, MaxCDN, etc. Clearly Akamai and Amazon are industry leader but with some the new functionalities and capabilities announced in late 2015, Azure CDN has become a serious competitor for the big 2. Azure CDN has no upfront-costs, no termination fees and you only pay for what you use. RESTful APIs are available to manage CDN Configuration (create/update/delete) and CDN Endpoints (purge, preload, compression, querystring). In my next post we will cover commissioning, configuring an Azure CDN Endpoint to be used with your website.</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2016/02/23/hello-world/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+          <li class="next disabled"><a>Next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+    <!-- share -->
+    
+ 
+        
+
+        
+
+        
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_sharing_toolbox"></div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ccbafe32c7ed6b"></script>
+
+   
+    
+	
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	02-23-2016 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Information/">Information<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/CDN/">CDN<span>1</span></a></li> <li><a href="/tags/Web-Optimization/">Web Optimization<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'cloud-explorer';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Raju Rangan
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+  
+</body>
+   </html>
