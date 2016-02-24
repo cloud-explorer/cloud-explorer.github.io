@@ -49,12 +49,6 @@
 
   
 
-   
-    <!-- Filament Share -->
-     
-	<script data-cfasync="false" type="text/javascript" src="//filamentapp.s3.amazonaws.com/0075e43dda361b9aea66a942e44e22dc.js" async="async"></script>
-
-
   
 
 </head>
@@ -137,49 +131,20 @@
   <div class="row">
 	
 	
-		<p>The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. </p>
-<h4 id="Scenario-1-No-CDN"><a href="#Scenario-1-No-CDN" class="headerlink" title="Scenario 1: No CDN"></a>Scenario 1: No CDN</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image1.jpg" alt="No CDN" title="No CDN">
-<ol>
-<li>The user requests a resource on your website through the internet</li>
-<li>The request bounces back and forth between different networks on the internet before reaching the origin server (Red lines in the diagram)</li>
-<li>The origin server processes the request and its response again travels through the internet taking several hops before reaching the user’s HTTP client (Black lines in the diagram). Even for the most optimized website, this “network hop” dance negatively impacts latency by several seconds.</li>
-</ol>
-<p>According to <a href="http://loadstorm.com/2014/04/infographic-web-performance-impacts-conversion-rates/" target="_blank" rel="external">this</a> 2014 study by LoadStorm, <strong>25%</strong> of users will abandon a website that takes more than 4 seconds to load, <strong>75%</strong> of mobile users will quit after 5 seconds. The worst part is almost <strong>50%</strong> of the users will never return to a poorly performing website. This is the exact problem a Content Delivery Network (CDN) tries to solve by caching static resources in geographically distributed edge servers.</p>
-<blockquote><p><strong>Origin Server:</strong> As the name suggests, this is the server(s) where the customer host their content.</p>
-<p><strong>POP</strong>: POP stands for Point Of Presence. This is also sometime referred to as the <strong>CDN Edge Network</strong>. These are the geographical locations where CDN edge server are located</p>
-</blockquote>
-<h4 id="Scenario-2-With-CDN-First-Request-Origin-Pull"><a href="#Scenario-2-With-CDN-First-Request-Origin-Pull" class="headerlink" title="Scenario 2: With CDN - First Request (Origin Pull)"></a>Scenario 2: With CDN - First Request (Origin Pull)</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image1.jpg" alt="First Request Scenario" title="First Request Scenario">
-<ol>
-<li>The user requests a resource on your website through the internet</li>
-<li>The request reaches the “closest” POP location to the user (POP-U in diagram). Close here refers to network closeness and not necessarily geographical closeness.</li>
-<li>Since the edge network is aware of its locations, POP-U requests the resource from the POP closest to the origin server (POP-O in diagram). This request will travel from POP-U to POP-O using the most optimal route available.</li>
-<li>POP-O request the resource from the origin, caches the response and communicates it back to POP-U.</li>
-<li>POP-U caches the response and communicates it back to the user</li>
-</ol>
-<h4 id="Scenario-3-With-CDN-Subsequent-Request"><a href="#Scenario-3-With-CDN-Subsequent-Request" class="headerlink" title="Scenario 3: With CDN - Subsequent Request"></a>Scenario 3: With CDN - Subsequent Request</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image3.jpg" alt="Subsequent Requests Scenario" title="Subsequent Requests Scenario">
-<ol>
-<li>The user requests a resource on your website through the internet</li>
-<li>The request reaches the “closest” POP location to the user. If a cached version of the resource is available, it is communicated back to the user. If a cached version was not found, the resource will be pulled from the origin (scenario 2).<br>With the CDN Edge Network, the number of “hops” required to pull a resource from the origin server is reduced significantly. Once the resource is cached, it is directly served from a POP that is “closest” to the requester. This dramatically improves the latency of the website.</li>
-</ol>
-<h4 id="Scenario-4-With-CDN-–-Request-from-a-different-POP-location"><a href="#Scenario-4-With-CDN-–-Request-from-a-different-POP-location" class="headerlink" title="Scenario 4: With CDN – Request from a different POP location"></a>Scenario 4: With CDN – Request from a different POP location</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image4.jpg" alt="Request from a different POP location Scenario" title="Request from a different POP location Scenario">
-<ol>
-<li>The user requests a resource on your website through the internet</li>
-<li>Just like in scenario 2 the POP closest to the user (POP-U) receives the request and forward it directly to the POP (POP-O) closest to the origin.</li>
-<li>If POP-O has a cached version of the resource, it responds back <strong>without</strong> requesting it from the origin. If not, it performs an origin pull.</li>
-</ol>
-<p>As can be seen the introduction of a CDN allows the website to respond to unpredictable user loads in a predictable manner. Content is always pulled and cached by the POP closest to the origin. As and when user load increases, the load on the CDN edge network increases never affecting the origin server.</p>
-<h4 id="Is-a-CDN-must-for-every-website"><a href="#Is-a-CDN-must-for-every-website" class="headerlink" title="Is a CDN must for every website?"></a>Is a CDN must for every website?</h4><p>It depends on the purpose and user distribution of the website. A CDN may not make much difference in the following scenarios</p>
-<ol>
-<li><p>If the content of the website is very dynamic with very little chance of reuse.</p>
-</li>
-<li><p>If the majority of the users are in a location very close to the origin server. In this case the origin may be better suited to deliver the content in the most optimal route.</p>
-</li>
-</ol>
-<p>There are several CDN offerings available such as Akamai, Amazon CloudFront, Azure, MaxCDN, etc. Clearly Akamai and Amazon are industry leader but with some the new functionalities and capabilities announced in late 2015, Azure CDN has become a serious competitor for the big 2. Azure CDN has no upfront-costs, no termination fees and you only pay for what you use. RESTful APIs are available to manage CDN Configuration (create/update/delete) and CDN Endpoints (purge, preload, compression, querystring). In my next post we will cover commissioning, configuring an Azure CDN Endpoint to be used with your website.</p>
-
+		The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation.
 	
 	</div>
-  <a type="button" href="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/#more" class="btn btn-default more">Read More</a>
+	<br/>
+	<div class="row">
+  <a type="button" href="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/#more" class="btn btn-default more pull-left">Read More</a>
+  <span class="pull-right">
+  	
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_sharing_toolbox"></div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ccbafe32c7ed6b"></script>
+
+  </span>
+  </div>
 </div>
 
 		
@@ -233,9 +198,9 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Web-Optimization/">Web Optimization<span>1</span></a></li>
-		
 			<li><a href="/tags/CDN/">CDN<span>1</span></a></li>
+		
+			<li><a href="/tags/Web-Optimization/">Web Optimization<span>1</span></a></li>
 		
 		 
 		</ul>
