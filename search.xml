@@ -4,10 +4,10 @@
   
     
     <entry>
-      <title><![CDATA[What is a cdn and why do you need it]]></title>
-      <url>https://cloud-explorer.github.io/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/</url>
+      <title><![CDATA[What is a cdn and why do you need to care?]]></title>
+      <url>https://cloud-explorer.github.io/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/</url>
       <content type="html"><![CDATA[<p>The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. </p>
-<h4 id="Scenario-1-No-CDN"><a href="#Scenario-1-No-CDN" class="headerlink" title="Scenario 1: No CDN"></a>Scenario 1: No CDN</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image1.jpg" alt="No CDN" title="No CDN">
+<h4 id="Scenario-1-No-CDN"><a href="#Scenario-1-No-CDN" class="headerlink" title="Scenario 1: No CDN"></a>Scenario 1: No CDN</h4><img src="/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image1.jpg" alt="No CDN" title="No CDN">
 <ol>
 <li>The user requests a resource on your website through the internet</li>
 <li>The request bounces back and forth between different networks on the internet before reaching the origin server (Red lines in the diagram)</li>
@@ -17,7 +17,7 @@
 <blockquote><p><strong>Origin Server:</strong> As the name suggests, this is the server(s) where the customer host their content.</p>
 <p><strong>POP</strong>: POP stands for Point Of Presence. This is also sometime referred to as the <strong>CDN Edge Network</strong>. These are the geographical locations where CDN edge server are located</p>
 </blockquote>
-<h4 id="Scenario-2-With-CDN-First-Request-Origin-Pull"><a href="#Scenario-2-With-CDN-First-Request-Origin-Pull" class="headerlink" title="Scenario 2: With CDN - First Request (Origin Pull)"></a>Scenario 2: With CDN - First Request (Origin Pull)</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image1.jpg" alt="First Request Scenario" title="First Request Scenario">
+<h4 id="Scenario-2-With-CDN-First-Request-Origin-Pull"><a href="#Scenario-2-With-CDN-First-Request-Origin-Pull" class="headerlink" title="Scenario 2: With CDN - First Request (Origin Pull)"></a>Scenario 2: With CDN - First Request (Origin Pull)</h4><img src="/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image1.jpg" alt="First Request Scenario" title="First Request Scenario">
 <ol>
 <li>The user requests a resource on your website through the internet</li>
 <li>The request reaches the “closest” POP location to the user (POP-U in diagram). Close here refers to network closeness and not necessarily geographical closeness.</li>
@@ -25,12 +25,12 @@
 <li>POP-O request the resource from the origin, caches the response and communicates it back to POP-U.</li>
 <li>POP-U caches the response and communicates it back to the user</li>
 </ol>
-<h4 id="Scenario-3-With-CDN-Subsequent-Request"><a href="#Scenario-3-With-CDN-Subsequent-Request" class="headerlink" title="Scenario 3: With CDN - Subsequent Request"></a>Scenario 3: With CDN - Subsequent Request</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image3.jpg" alt="Subsequent Requests Scenario" title="Subsequent Requests Scenario">
+<h4 id="Scenario-3-With-CDN-Subsequent-Request"><a href="#Scenario-3-With-CDN-Subsequent-Request" class="headerlink" title="Scenario 3: With CDN - Subsequent Request"></a>Scenario 3: With CDN - Subsequent Request</h4>
 <ol>
 <li>The user requests a resource on your website through the internet</li>
 <li>The request reaches the “closest” POP location to the user. If a cached version of the resource is available, it is communicated back to the user. If a cached version was not found, the resource will be pulled from the origin (scenario 2).<br>With the CDN Edge Network, the number of “hops” required to pull a resource from the origin server is reduced significantly. Once the resource is cached, it is directly served from a POP that is “closest” to the requester. This dramatically improves the latency of the website.</li>
 </ol>
-<h4 id="Scenario-4-With-CDN-–-Request-from-a-different-POP-location"><a href="#Scenario-4-With-CDN-–-Request-from-a-different-POP-location" class="headerlink" title="Scenario 4: With CDN – Request from a different POP location"></a>Scenario 4: With CDN – Request from a different POP location</h4><img src="/2016/02/23/What-is-a-CDN-and-why-do-I-need-to-use-it/image4.jpg" alt="Request from a different POP location Scenario" title="Request from a different POP location Scenario">
+<h4 id="Scenario-4-With-CDN-–-Request-from-a-different-POP-location"><a href="#Scenario-4-With-CDN-–-Request-from-a-different-POP-location" class="headerlink" title="Scenario 4: With CDN – Request from a different POP location"></a>Scenario 4: With CDN – Request from a different POP location</h4>
 <ol>
 <li>The user requests a resource on your website through the internet</li>
 <li>Just like in scenario 2 the POP closest to the user (POP-U) receives the request and forward it directly to the POP (POP-O) closest to the origin.</li>
