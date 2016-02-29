@@ -6,7 +6,7 @@
   <title>What is a cdn and why do you need to care? | Cloud Explorer.</title>
   <meta name="author" content="Raju Rangan">
   
-  <meta name="description" content="The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation.">
+  <meta name="description" content="The success of the websites we build is heavily influenced by its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation.">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +24,7 @@
   
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/css/themes/cosmo.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
@@ -54,7 +54,7 @@
 </head>
 
  <body>  
-  <nav id="main-nav" class="navbar  navbar-default navbar-fixed-top" role="navigation">
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
       <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	<span class="sr-only">Toggle navigation</span>
@@ -102,8 +102,8 @@
 
 
 	
-		<div class="page-header ">		
-			<h1 class="title "> What is a cdn and why do you need to care?</h1>
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> What is a cdn and why do you need to care?</h1>
 		</div>		
 	
 
@@ -123,7 +123,7 @@
 	<div class="mypage">		
 	  		
 
-	  <p>The success of the websites we build is directly dependent on its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. </p>
+	  <p>The success of the websites we build is heavily influenced by its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. </p>
 <h4 id="Scenario-1-No-CDN"><a href="#Scenario-1-No-CDN" class="headerlink" title="Scenario 1: No CDN"></a>Scenario 1: No CDN</h4><img src="/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image1.jpg" alt="No CDN" title="No CDN">
 <ol>
 <li>The user requests a resource on your website through the internet</li>
@@ -131,9 +131,11 @@
 <li>The origin server processes the request and its response again travels through the internet taking several hops before reaching the user’s HTTP client (Black lines in the diagram). Even for the most optimized website, this “network hop” dance negatively impacts latency by several seconds.</li>
 </ol>
 <p>According to <a href="http://loadstorm.com/2014/04/infographic-web-performance-impacts-conversion-rates/" target="_blank" rel="external">this</a> 2014 study by LoadStorm, <strong>25%</strong> of users will abandon a website that takes more than 4 seconds to load, <strong>75%</strong> of mobile users will quit after 5 seconds. The worst part is almost <strong>50%</strong> of the users will never return to a poorly performing website. This is the exact problem a Content Delivery Network (CDN) tries to solve by caching static resources in geographically distributed edge servers.</p>
-<blockquote><p><strong>Origin Server:</strong> As the name suggests, this is the server(s) where the customer host their content.</p>
-<p><strong>POP</strong>: POP stands for Point Of Presence. This is also sometime referred to as the <strong>CDN Edge Network</strong>. These are the geographical locations where CDN edge servers are located</p>
-</blockquote>
+<div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  <br>
+
+<strong>Origin Server: </strong> As the name suggests, this is the server(s) where the customer host their content.
+<br>
+<strong>POP: </strong>POP stands for Point Of Presence. This is also sometime referred to as the <strong>CDN Edge Network</strong>. These are the geographical locations where CDN edge servers are located</div>
 <h4 id="Scenario-2-With-CDN-First-Request-Origin-Pull"><a href="#Scenario-2-With-CDN-First-Request-Origin-Pull" class="headerlink" title="Scenario 2: With CDN - First Request (Origin Pull)"></a>Scenario 2: With CDN - First Request (Origin Pull)</h4><img src="/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image2.jpg" alt="First Request Scenario" title="First Request Scenario">
 <ol>
 <li>The user requests a resource on your website through the internet</li>
