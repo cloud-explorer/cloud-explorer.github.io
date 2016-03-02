@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cloud-explorer.github.io/"/>
-  <updated>2016-03-02T01:50:36.305Z</updated>
+  <updated>2016-03-02T02:02:25.063Z</updated>
   <id>https://cloud-explorer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/"/>
     <id>https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/</id>
     <published>2016-03-02T01:37:46.000Z</published>
-    <updated>2016-03-02T01:50:36.305Z</updated>
+    <updated>2016-03-02T02:02:25.063Z</updated>
     
     <content type="html">&lt;p&gt;In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.&lt;/p&gt;
 &lt;h4 id=&quot;Creating-a-CDN-Profile&quot;&gt;&lt;a href=&quot;#Creating-a-CDN-Profile&quot; class=&quot;headerlink&quot; title=&quot;Creating a CDN Profile&quot;&gt;&lt;/a&gt;Creating a CDN Profile&lt;/h4&gt;&lt;ol&gt;
@@ -42,13 +42,13 @@
 &lt;li&gt;&lt;p&gt;Select the Azure Subscription you want to create this under and press the Create button.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;This will kick-off the request for the creation of the CDN profile. You will be notified when the CDN profile creation successfully completes.&lt;/p&gt;
-
+&lt;img src=&quot;/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image2.gif&quot; alt=&quot;CDN Profile creationg notification&quot; title=&quot;CDN Profile creationg notification&quot;&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Now that you have a CDN profile it is time to create a CDN endpoint.&lt;/p&gt;
 &lt;h4 id=&quot;Creating-a-CDN-Endpoint&quot;&gt;&lt;a href=&quot;#Creating-a-CDN-Endpoint&quot; class=&quot;headerlink&quot; title=&quot;Creating a CDN Endpoint.&quot;&gt;&lt;/a&gt;Creating a CDN Endpoint.&lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Under the newly created CDN profile, click on the Add Endpoint button&lt;/p&gt;
-
+&lt;img src=&quot;/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image3.png&quot; alt=&quot;Create CDN Endpoint&quot; title=&quot;Create CDN Endpoint&quot;&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Enter a name for the endpoint. This has to be a unique name across all Azure CDN endpoints. When created your CDN endpoint will be accessible at &lt;a href=&quot;http://&amp;lt;endpointname&amp;gt;.azureedge.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://&amp;lt;endpointname&amp;gt;.azureedge.net/&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -73,7 +73,7 @@
 &lt;li&gt;&lt;p&gt;Click Add to kick-off the request for creation of this endpoint.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Once the endpoint is created it will appear in a list under the CDN profile blade&lt;/p&gt;
-
+&lt;img src=&quot;/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image4.png&quot; alt=&quot;CDN endpoint creation. See the end points listed on the CDN profile blade&quot; title=&quot;CDN endpoint creation. See the end points listed on the CDN profile blade&quot;&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&quot;Configuring-the-Endpoint&quot;&gt;&lt;a href=&quot;#Configuring-the-Endpoint&quot; class=&quot;headerlink&quot; title=&quot;Configuring the Endpoint&quot;&gt;&lt;/a&gt;Configuring the Endpoint&lt;/h4&gt;&lt;ol&gt;
@@ -94,7 +94,7 @@
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;You can also change the protocol, the origin host header and the origin path on this blade&lt;/p&gt;
-
+&lt;img src=&quot;/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image5.png&quot; alt=&quot;CDN endpoint configuration&quot; title=&quot;CDN endpoint configuration&quot;&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;alert alert-warning&quot;&gt;&lt;i class=&quot;fa fa-bell&quot;&gt;&lt;/i&gt;  &lt;br&gt;

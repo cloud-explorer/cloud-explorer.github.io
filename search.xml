@@ -26,13 +26,13 @@
 <li><p>Select the Azure Subscription you want to create this under and press the Create button.</p>
 </li>
 <li><p>This will kick-off the request for the creation of the CDN profile. You will be notified when the CDN profile creation successfully completes.</p>
-
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image2.gif" alt="CDN Profile creationg notification" title="CDN Profile creationg notification">
 </li>
 </ol>
 <p>Now that you have a CDN profile it is time to create a CDN endpoint.</p>
 <h4 id="Creating-a-CDN-Endpoint"><a href="#Creating-a-CDN-Endpoint" class="headerlink" title="Creating a CDN Endpoint."></a>Creating a CDN Endpoint.</h4><ol>
 <li><p>Under the newly created CDN profile, click on the Add Endpoint button</p>
-
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image3.png" alt="Create CDN Endpoint" title="Create CDN Endpoint">
 </li>
 <li><p>Enter a name for the endpoint. This has to be a unique name across all Azure CDN endpoints. When created your CDN endpoint will be accessible at <a href="http://&lt;endpointname&gt;.azureedge.net/" target="_blank" rel="external">http://&lt;endpointname&gt;.azureedge.net/</a></p>
 </li>
@@ -57,7 +57,7 @@
 <li><p>Click Add to kick-off the request for creation of this endpoint.</p>
 </li>
 <li><p>Once the endpoint is created it will appear in a list under the CDN profile blade</p>
-
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image4.png" alt="CDN endpoint creation. See the end points listed on the CDN profile blade" title="CDN endpoint creation. See the end points listed on the CDN profile blade">
 </li>
 </ol>
 <h4 id="Configuring-the-Endpoint"><a href="#Configuring-the-Endpoint" class="headerlink" title="Configuring the Endpoint"></a>Configuring the Endpoint</h4><ol>
@@ -78,7 +78,7 @@
 </ol>
 </li>
 <li><p>You can also change the protocol, the origin host header and the origin path on this blade</p>
-
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image5.png" alt="CDN endpoint configuration" title="CDN endpoint configuration">
 </li>
 </ol>
 <div class="alert alert-warning"><i class="fa fa-bell"></i>  <br>
