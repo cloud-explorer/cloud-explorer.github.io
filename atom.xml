@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Cloud Explorer.</title>
+  <subtitle>Dream. Explore. Innovate.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://cloud-explorer.github.io/"/>
+  <updated>2016-03-02T01:50:36.305Z</updated>
+  <id>https://cloud-explorer.github.io/</id>
+  
+  <author>
+    <name>Raju Rangan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Create and Configure an Azure CDN Endpoint</title>
+    <link href="https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/"/>
+    <id>https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/</id>
+    <published>2016-03-02T01:37:46.000Z</published>
+    <updated>2016-03-02T01:50:36.305Z</updated>
+    
+    <content type="html">&lt;p&gt;In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.&lt;/p&gt;
+&lt;h4 id=&quot;Creating-a-CDN-Profile&quot;&gt;&lt;a href=&quot;#Creating-a-CDN-Profile&quot; class=&quot;headerlink&quot; title=&quot;Creating a CDN Profile&quot;&gt;&lt;/a&gt;Creating a CDN Profile&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Go to the Azure Management Portal at &lt;a href=&quot;http://portal.azure.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://portal.azure.com&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;On the resources blade on the left, click on “New”&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;On the New blade select Media + CDN, then select CDN.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;On the New CDN profile blade, fill in the name of the profile. A CDN Profile is bucket which may contain one or more CDN endpoint. So choose a name that will make sense for your business&lt;/p&gt;
+&lt;img src=&quot;/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image1.jpeg&quot; alt=&quot;Creating an Azure CDN Profile&quot; title=&quot;Creating an Azure CDN Profile&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Choose a location. This is the location of the data center where you profile information will be stored. This is not the POP location.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Choose an existing resource group or create a new one. Typically, a resource group is comprised of resources related to a specific application. For example, you can choose to group the web app, database and CDN for the website under the same resource group.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Choose either the Standard S1 or Premium P1 as the pricing tier. A detailed list of features for each of these tier can be found on the Azure CDN’s site &lt;a href=&quot;https://azure.microsoft.com/en-us/services/cdn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://azure.microsoft.com/en-us/services/cdn/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select the Azure Subscription you want to create this under and press the Create button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This will kick-off the request for the creation of the CDN profile. You will be notified when the CDN profile creation successfully completes.&lt;/p&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now that you have a CDN profile it is time to create a CDN endpoint.&lt;/p&gt;
+&lt;h4 id=&quot;Creating-a-CDN-Endpoint&quot;&gt;&lt;a href=&quot;#Creating-a-CDN-Endpoint&quot; class=&quot;headerlink&quot; title=&quot;Creating a CDN Endpoint.&quot;&gt;&lt;/a&gt;Creating a CDN Endpoint.&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Under the newly created CDN profile, click on the Add Endpoint button&lt;/p&gt;
+
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enter a name for the endpoint. This has to be a unique name across all Azure CDN endpoints. When created your CDN endpoint will be accessible at &lt;a href=&quot;http://&amp;lt;endpointname&amp;gt;.azureedge.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://&amp;lt;endpointname&amp;gt;.azureedge.net/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Choose an origin type and origin hostname. Your choices are&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Storage&lt;/em&gt; and then select an existing blob storage container (Container needs to be publically accessible) from your subscription&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Cloud Service&lt;/em&gt; and the select a website deployed on a VM or a Cloud Service (IaaS)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;WebApp&lt;/em&gt; and select a website deployed as PaaS, or&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Custom Origin&lt;/em&gt; and select custom origin URL or IP address. This can point to any publically accessible URL or IP Address.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the content to be retrieved is hosted under a specific directory path, specify the Origin Path. This is optional and need not be filled in if it is not applicable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Then enter the host header the needs to be sent to the origin with each request. If there are more than one virtual domains hosted on a physical server, the hostname and IP address from the host header can used by the origin server to identify the incoming request. If you leave this blank, the request hostname determines this value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select the HTTP protocols you want the CDN support and their port numbers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Click Add to kick-off the request for creation of this endpoint.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once the endpoint is created it will appear in a list under the CDN profile blade&lt;/p&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;Configuring-the-Endpoint&quot;&gt;&lt;a href=&quot;#Configuring-the-Endpoint&quot; class=&quot;headerlink&quot; title=&quot;Configuring the Endpoint&quot;&gt;&lt;/a&gt;Configuring the Endpoint&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;On the CDN profile page, click on the endpoint to launch the Endpoint blade.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Click Configure&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you desire to turn to turn on compression for files, toggle the compression button to on. Optionally you can add or remove the content types to be compressed. By default, azure list all static resource content types that are generally compressed for content delivery.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Then you can select the query string caching behavior. The choices are to&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Ignore query string when caching.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To bypass caching for URLs that contain query strings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To cache every request with a unique URL&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You can also change the protocol, the origin host header and the origin path on this blade&lt;/p&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;alert alert-warning&quot;&gt;&lt;i class=&quot;fa fa-bell&quot;&gt;&lt;/i&gt;  &lt;br&gt;
+Please note that the endpoint will not be available for use immediately. It may take up to 90 minutes for the registration to propagate through the CDN network. If you try to access the CDN endpoint immediately, you will get a 404 – NOT FOUND response until the content becomes available on the CDN&lt;/div&gt;
+</content>
+    
+    <summary type="html">
+    
+      In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.
+    
+    </summary>
+    
+      <category term="How to" scheme="https://cloud-explorer.github.io/categories/how-to/"/>
+    
+    
+      <category term="Azure" scheme="https://cloud-explorer.github.io/tags/azure/"/>
+    
+      <category term="CDN" scheme="https://cloud-explorer.github.io/tags/cdn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What is a cdn and why do you need to care?</title>
+    <link href="https://cloud-explorer.github.io/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/"/>
+    <id>https://cloud-explorer.github.io/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/</id>
+    <published>2016-02-23T05:00:00.000Z</published>
+    <updated>2016-02-29T23:22:22.509Z</updated>
+    
+    <content type="html">&lt;p&gt;The success of the websites we build is heavily influenced by its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. &lt;/p&gt;
+&lt;h4 id=&quot;Scenario-1-No-CDN&quot;&gt;&lt;a href=&quot;#Scenario-1-No-CDN&quot; class=&quot;headerlink&quot; title=&quot;Scenario 1: No CDN&quot;&gt;&lt;/a&gt;Scenario 1: No CDN&lt;/h4&gt;&lt;img src=&quot;/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image1.jpg&quot; alt=&quot;No CDN&quot; title=&quot;No CDN&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;The user requests a resource on your website through the internet&lt;/li&gt;
+&lt;li&gt;The request bounces back and forth between different networks on the internet before reaching the origin server (Red lines in the diagram)&lt;/li&gt;
+&lt;li&gt;The origin server processes the request and its response again travels through the internet taking several hops before reaching the user’s HTTP client (Black lines in the diagram). Even for the most optimized website, this “network hop” dance negatively impacts latency by several seconds.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;According to &lt;a href=&quot;http://loadstorm.com/2014/04/infographic-web-performance-impacts-conversion-rates/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;this&lt;/a&gt; 2014 study by LoadStorm, &lt;strong&gt;25%&lt;/strong&gt; of users will abandon a website that takes more than 4 seconds to load, &lt;strong&gt;75%&lt;/strong&gt; of mobile users will quit after 5 seconds. The worst part is almost &lt;strong&gt;50%&lt;/strong&gt; of the users will never return to a poorly performing website. This is the exact problem a Content Delivery Network (CDN) tries to solve by caching static resources in geographically distributed edge servers.&lt;/p&gt;
+&lt;div class=&quot;alert alert-success&quot;&gt;&lt;i class=&quot;fa fa-lightbulb-o&quot;&gt;&lt;/i&gt;  &lt;br&gt;
+
+&lt;strong&gt;Origin Server: &lt;/strong&gt; As the name suggests, this is the server(s) where the customer host their content.
+&lt;br&gt;
+&lt;strong&gt;POP: &lt;/strong&gt;POP stands for Point Of Presence. This is also sometime referred to as the &lt;strong&gt;CDN Edge Network&lt;/strong&gt;. These are the geographical locations where CDN edge servers are located&lt;/div&gt;
+&lt;h4 id=&quot;Scenario-2-With-CDN-First-Request-Origin-Pull&quot;&gt;&lt;a href=&quot;#Scenario-2-With-CDN-First-Request-Origin-Pull&quot; class=&quot;headerlink&quot; title=&quot;Scenario 2: With CDN - First Request (Origin Pull)&quot;&gt;&lt;/a&gt;Scenario 2: With CDN - First Request (Origin Pull)&lt;/h4&gt;&lt;img src=&quot;/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image2.jpg&quot; alt=&quot;First Request Scenario&quot; title=&quot;First Request Scenario&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;The user requests a resource on your website through the internet&lt;/li&gt;
+&lt;li&gt;The request reaches the “closest” POP location to the user (POP-U in diagram). Close here refers to network closeness and not necessarily geographical closeness.&lt;/li&gt;
+&lt;li&gt;Since the edge network is aware of its locations, POP-U requests the resource from the POP closest to the origin server (POP-O in diagram). This request will travel from POP-U to POP-O using the most optimal route available.&lt;/li&gt;
+&lt;li&gt;POP-O request the resource from the origin, caches the response and communicates it back to POP-U.&lt;/li&gt;
+&lt;li&gt;POP-U caches the response and communicates it back to the user&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;Scenario-3-With-CDN-Subsequent-Request&quot;&gt;&lt;a href=&quot;#Scenario-3-With-CDN-Subsequent-Request&quot; class=&quot;headerlink&quot; title=&quot;Scenario 3: With CDN - Subsequent Request&quot;&gt;&lt;/a&gt;Scenario 3: With CDN - Subsequent Request&lt;/h4&gt;&lt;img src=&quot;/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image3.jpg&quot; alt=&quot;Subsequent Requests Scenario&quot; title=&quot;Subsequent Requests Scenario&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;The user requests a resource on your website through the internet&lt;/li&gt;
+&lt;li&gt;The request reaches the “closest” POP location to the user. If a cached version of the resource is available, it is communicated back to the user. If a cached version was not found, the resource will be pulled from the origin (scenario 2).&lt;br&gt;With the CDN Edge Network, the number of “hops” required to pull a resource from the origin server is reduced significantly. Once the resource is cached, it is directly served from a POP that is “closest” to the requester. This dramatically improves the latency of the website.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;Scenario-4-With-CDN-–-Request-from-a-different-POP-location&quot;&gt;&lt;a href=&quot;#Scenario-4-With-CDN-–-Request-from-a-different-POP-location&quot; class=&quot;headerlink&quot; title=&quot;Scenario 4: With CDN – Request from a different POP location&quot;&gt;&lt;/a&gt;Scenario 4: With CDN – Request from a different POP location&lt;/h4&gt;&lt;img src=&quot;/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/image4.jpg&quot; alt=&quot;Request from a different POP location Scenario&quot; title=&quot;Request from a different POP location Scenario&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;The user requests a resource on your website through the internet&lt;/li&gt;
+&lt;li&gt;Just like in scenario 2 the POP closest to the user (POP-U) receives the request and forward it directly to the POP (POP-O) closest to the origin.&lt;/li&gt;
+&lt;li&gt;If POP-O has a cached version of the resource, it responds back &lt;strong&gt;without&lt;/strong&gt; requesting it from the origin. If not, it performs an origin pull.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As can be seen the introduction of a CDN allows the website to respond to unpredictable user loads in a predictable manner. Content is always pulled and cached by the POP closest to the origin. As and when user load increases, the load on the CDN edge network increases never affecting the origin server.&lt;/p&gt;
+&lt;h4 id=&quot;Is-a-CDN-must-for-every-website&quot;&gt;&lt;a href=&quot;#Is-a-CDN-must-for-every-website&quot; class=&quot;headerlink&quot; title=&quot;Is a CDN must for every website?&quot;&gt;&lt;/a&gt;Is a CDN must for every website?&lt;/h4&gt;&lt;p&gt;It depends on the purpose and user distribution of the website. A CDN may not make much difference in the following scenarios&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;If the content of the website is very dynamic with very little chance of reuse.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the majority of the users are in a location very close to the origin server. In this case the origin may be better suited to deliver the content in the most optimal route.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There are several CDN offerings available such as Akamai, Amazon CloudFront, Azure, MaxCDN, etc. Clearly Akamai and Amazon are industry leader but with some the new functionalities and capabilities announced in late 2015, Azure CDN has become a serious competitor for the big 2. Azure CDN has no upfront-costs, no termination fees and you only pay for what you use. RESTful APIs are available to manage CDN Configuration (create/update/delete) and CDN Endpoints (purge, preload, compression, querystring). In my next post we will cover commissioning, configuring an Azure CDN Endpoint to be used with your website.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      The success of the websites we build is heavily influenced by its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation.
+    
+    </summary>
+    
+      <category term="Information" scheme="https://cloud-explorer.github.io/categories/information/"/>
+    
+    
+      <category term="CDN" scheme="https://cloud-explorer.github.io/tags/cdn/"/>
+    
+      <category term="Web Optimization" scheme="https://cloud-explorer.github.io/tags/web-optimization/"/>
+    
+  </entry>
+  
+</feed>

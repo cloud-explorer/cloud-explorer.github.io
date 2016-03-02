@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title><![CDATA[Create and Configure an Azure CDN Endpoint]]></title>
+      <url>https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/</url>
+      <content type="html"><![CDATA[<p>In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.</p>
+<h4 id="Creating-a-CDN-Profile"><a href="#Creating-a-CDN-Profile" class="headerlink" title="Creating a CDN Profile"></a>Creating a CDN Profile</h4><ol>
+<li><p>Go to the Azure Management Portal at <a href="http://portal.azure.com" target="_blank" rel="external">http://portal.azure.com</a></p>
+</li>
+<li><p>On the resources blade on the left, click on “New”</p>
+</li>
+<li><p>On the New blade select Media + CDN, then select CDN.</p>
+</li>
+<li><p>On the New CDN profile blade, fill in the name of the profile. A CDN Profile is bucket which may contain one or more CDN endpoint. So choose a name that will make sense for your business</p>
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image1.jpeg" alt="Creating an Azure CDN Profile" title="Creating an Azure CDN Profile">
+</li>
+<li><p>Choose a location. This is the location of the data center where you profile information will be stored. This is not the POP location.</p>
+</li>
+<li><p>Choose an existing resource group or create a new one. Typically, a resource group is comprised of resources related to a specific application. For example, you can choose to group the web app, database and CDN for the website under the same resource group.</p>
+</li>
+<li><p>Choose either the Standard S1 or Premium P1 as the pricing tier. A detailed list of features for each of these tier can be found on the Azure CDN’s site <a href="https://azure.microsoft.com/en-us/services/cdn/" target="_blank" rel="external">https://azure.microsoft.com/en-us/services/cdn/</a></p>
+</li>
+<li><p>Select the Azure Subscription you want to create this under and press the Create button.</p>
+</li>
+<li><p>This will kick-off the request for the creation of the CDN profile. You will be notified when the CDN profile creation successfully completes.</p>
+
+</li>
+</ol>
+<p>Now that you have a CDN profile it is time to create a CDN endpoint.</p>
+<h4 id="Creating-a-CDN-Endpoint"><a href="#Creating-a-CDN-Endpoint" class="headerlink" title="Creating a CDN Endpoint."></a>Creating a CDN Endpoint.</h4><ol>
+<li><p>Under the newly created CDN profile, click on the Add Endpoint button</p>
+
+</li>
+<li><p>Enter a name for the endpoint. This has to be a unique name across all Azure CDN endpoints. When created your CDN endpoint will be accessible at <a href="http://&lt;endpointname&gt;.azureedge.net/" target="_blank" rel="external">http://&lt;endpointname&gt;.azureedge.net/</a></p>
+</li>
+<li><p>Choose an origin type and origin hostname. Your choices are</p>
+<ol>
+<li><p><em>Storage</em> and then select an existing blob storage container (Container needs to be publically accessible) from your subscription</p>
+</li>
+<li><p><em>Cloud Service</em> and the select a website deployed on a VM or a Cloud Service (IaaS)</p>
+</li>
+<li><p><em>WebApp</em> and select a website deployed as PaaS, or</p>
+</li>
+<li><p><em>Custom Origin</em> and select custom origin URL or IP address. This can point to any publically accessible URL or IP Address.</p>
+</li>
+</ol>
+</li>
+<li><p>If the content to be retrieved is hosted under a specific directory path, specify the Origin Path. This is optional and need not be filled in if it is not applicable.</p>
+</li>
+<li><p>Then enter the host header the needs to be sent to the origin with each request. If there are more than one virtual domains hosted on a physical server, the hostname and IP address from the host header can used by the origin server to identify the incoming request. If you leave this blank, the request hostname determines this value.</p>
+</li>
+<li><p>Select the HTTP protocols you want the CDN support and their port numbers.</p>
+</li>
+<li><p>Click Add to kick-off the request for creation of this endpoint.</p>
+</li>
+<li><p>Once the endpoint is created it will appear in a list under the CDN profile blade</p>
+
+</li>
+</ol>
+<h4 id="Configuring-the-Endpoint"><a href="#Configuring-the-Endpoint" class="headerlink" title="Configuring the Endpoint"></a>Configuring the Endpoint</h4><ol>
+<li><p>On the CDN profile page, click on the endpoint to launch the Endpoint blade.</p>
+</li>
+<li><p>Click Configure</p>
+</li>
+<li><p>If you desire to turn to turn on compression for files, toggle the compression button to on. Optionally you can add or remove the content types to be compressed. By default, azure list all static resource content types that are generally compressed for content delivery.</p>
+</li>
+<li><p>Then you can select the query string caching behavior. The choices are to</p>
+<ol>
+<li><p>Ignore query string when caching.</p>
+</li>
+<li><p>To bypass caching for URLs that contain query strings.</p>
+</li>
+<li><p>To cache every request with a unique URL</p>
+</li>
+</ol>
+</li>
+<li><p>You can also change the protocol, the origin host header and the origin path on this blade</p>
+
+</li>
+</ol>
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  <br>
+Please note that the endpoint will not be available for use immediately. It may take up to 90 minutes for the registration to propagate through the CDN network. If you try to access the CDN endpoint immediately, you will get a 404 – NOT FOUND response until the content becomes available on the CDN</div>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[What is a cdn and why do you need to care?]]></title>
       <url>https://cloud-explorer.github.io/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/</url>
       <content type="html"><![CDATA[<p>The success of the websites we build is heavily influenced by its latency: the time it takes for the hosting server to receive, process, and deliver a request for a page (html, images, js, css, etc.). The latency a site visitor experiences is largely based on how far he/she is from the server and is compounded by the size and number of resources on the page. In this post we will explore the latency experienced by a website hosted in a single location, with a large international user-base experiences and how the addition of a Content Delivery Network (CDN) can drastically improve the situation. </p>

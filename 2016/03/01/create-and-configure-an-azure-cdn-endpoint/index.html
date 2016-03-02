@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Create and Configure an Azure CDN Endpoint | Cloud Explorer.</title>
+  <meta name="author" content="Raju Rangan">
+  
+  <meta name="description" content="In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Create and Configure an Azure CDN Endpoint"/>
+  <meta property="og:site_name" content="Cloud Explorer."/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51500048-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Cloud Explorer.</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> Create and Configure an Azure CDN Endpoint</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>In my last post we discussed the benefits of delivering your site’s content through a Content Delivery Network (CDN). Azure CDN as I had mentioned is gaining popularity. If you are in the Microsoft stack and are already using Azure, then it’s CDN offering is an excellent choice. In this post we will look at creating and configuring an Azure CDN endpoint to be used with your site.</p>
+<h4 id="Creating-a-CDN-Profile"><a href="#Creating-a-CDN-Profile" class="headerlink" title="Creating a CDN Profile"></a>Creating a CDN Profile</h4><ol>
+<li><p>Go to the Azure Management Portal at <a href="http://portal.azure.com" target="_blank" rel="external">http://portal.azure.com</a></p>
+</li>
+<li><p>On the resources blade on the left, click on “New”</p>
+</li>
+<li><p>On the New blade select Media + CDN, then select CDN.</p>
+</li>
+<li><p>On the New CDN profile blade, fill in the name of the profile. A CDN Profile is bucket which may contain one or more CDN endpoint. So choose a name that will make sense for your business</p>
+<img src="/2016/03/01/create-and-configure-an-azure-cdn-endpoint/image1.jpeg" alt="Creating an Azure CDN Profile" title="Creating an Azure CDN Profile">
+</li>
+<li><p>Choose a location. This is the location of the data center where you profile information will be stored. This is not the POP location.</p>
+</li>
+<li><p>Choose an existing resource group or create a new one. Typically, a resource group is comprised of resources related to a specific application. For example, you can choose to group the web app, database and CDN for the website under the same resource group.</p>
+</li>
+<li><p>Choose either the Standard S1 or Premium P1 as the pricing tier. A detailed list of features for each of these tier can be found on the Azure CDN’s site <a href="https://azure.microsoft.com/en-us/services/cdn/" target="_blank" rel="external">https://azure.microsoft.com/en-us/services/cdn/</a></p>
+</li>
+<li><p>Select the Azure Subscription you want to create this under and press the Create button.</p>
+</li>
+<li><p>This will kick-off the request for the creation of the CDN profile. You will be notified when the CDN profile creation successfully completes.</p>
+
+</li>
+</ol>
+<p>Now that you have a CDN profile it is time to create a CDN endpoint.</p>
+<h4 id="Creating-a-CDN-Endpoint"><a href="#Creating-a-CDN-Endpoint" class="headerlink" title="Creating a CDN Endpoint."></a>Creating a CDN Endpoint.</h4><ol>
+<li><p>Under the newly created CDN profile, click on the Add Endpoint button</p>
+
+</li>
+<li><p>Enter a name for the endpoint. This has to be a unique name across all Azure CDN endpoints. When created your CDN endpoint will be accessible at <a href="http://&lt;endpointname&gt;.azureedge.net/" target="_blank" rel="external">http://&lt;endpointname&gt;.azureedge.net/</a></p>
+</li>
+<li><p>Choose an origin type and origin hostname. Your choices are</p>
+<ol>
+<li><p><em>Storage</em> and then select an existing blob storage container (Container needs to be publically accessible) from your subscription</p>
+</li>
+<li><p><em>Cloud Service</em> and the select a website deployed on a VM or a Cloud Service (IaaS)</p>
+</li>
+<li><p><em>WebApp</em> and select a website deployed as PaaS, or</p>
+</li>
+<li><p><em>Custom Origin</em> and select custom origin URL or IP address. This can point to any publically accessible URL or IP Address.</p>
+</li>
+</ol>
+</li>
+<li><p>If the content to be retrieved is hosted under a specific directory path, specify the Origin Path. This is optional and need not be filled in if it is not applicable.</p>
+</li>
+<li><p>Then enter the host header the needs to be sent to the origin with each request. If there are more than one virtual domains hosted on a physical server, the hostname and IP address from the host header can used by the origin server to identify the incoming request. If you leave this blank, the request hostname determines this value.</p>
+</li>
+<li><p>Select the HTTP protocols you want the CDN support and their port numbers.</p>
+</li>
+<li><p>Click Add to kick-off the request for creation of this endpoint.</p>
+</li>
+<li><p>Once the endpoint is created it will appear in a list under the CDN profile blade</p>
+
+</li>
+</ol>
+<h4 id="Configuring-the-Endpoint"><a href="#Configuring-the-Endpoint" class="headerlink" title="Configuring the Endpoint"></a>Configuring the Endpoint</h4><ol>
+<li><p>On the CDN profile page, click on the endpoint to launch the Endpoint blade.</p>
+</li>
+<li><p>Click Configure</p>
+</li>
+<li><p>If you desire to turn to turn on compression for files, toggle the compression button to on. Optionally you can add or remove the content types to be compressed. By default, azure list all static resource content types that are generally compressed for content delivery.</p>
+</li>
+<li><p>Then you can select the query string caching behavior. The choices are to</p>
+<ol>
+<li><p>Ignore query string when caching.</p>
+</li>
+<li><p>To bypass caching for URLs that contain query strings.</p>
+</li>
+<li><p>To cache every request with a unique URL</p>
+</li>
+</ol>
+</li>
+<li><p>You can also change the protocol, the origin host header and the origin path on this blade</p>
+
+</li>
+</ol>
+<div class="alert alert-warning"><i class="fa fa-bell"></i>  <br>
+Please note that the endpoint will not be available for use immediately. It may take up to 90 minutes for the registration to propagate through the CDN network. If you try to access the CDN endpoint immediately, you will get a 404 – NOT FOUND response until the content becomes available on the CDN</div>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2016/02/23/what-is-a-cdn-and-why-do-i-need-to-care/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+    <!-- share -->
+    
+ 
+        
+
+        
+
+        
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_sharing_toolbox" data-url="https://cloud-explorer.github.io/2016/03/01/create-and-configure-an-azure-cdn-endpoint/" data-title="Create and Configure an Azure CDN Endpoint"></div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ccbafe32c7ed6b"></script>
+
+
+   		
+    
+	
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	03-01-2016 
+	</div>
+	
+	<div class="hidden-xs hidden-sm">
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/how-to/">How to<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/azure/">Azure<span>1</span></a></li> <li><a href="/tags/cdn/">CDN<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	</div>
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'cloud-explorer';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2016 Raju Rangan
+  
+      . Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+  
+</body>
+   </html>
